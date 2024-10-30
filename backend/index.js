@@ -5,12 +5,15 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express();
 const bcrypt = require('bcrypt')
+const defineCurrentUser = require('./middleware/defineCurrentUser')
 
 // Express Settings
 app.use(cors())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(defineCurrentUser)
+app.use(bcrypt)
 
 // Controllers & Routes
 
